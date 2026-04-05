@@ -2,7 +2,7 @@
 #include "helper.h"
 
 void print_message() {
-    printf("Math operations ready!\n");
+    printf("Math operations ready!!!!\n");
 }
 
 int add(int a, int b) {
