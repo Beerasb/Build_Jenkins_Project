@@ -24,10 +24,7 @@ int main(int argc, char **argv) {
     std::cout << "========================================" << std::endl;
     std::cout << "Build successful! Starting tests..." << std::endl;
     std::cout << "========================================" << std::endl;
-<<<<<<< HEAD
     ::testing::GTEST_FLAG(output) = "xml:report.xml"; // Output test results in XML format
-=======
->>>>>>> 982dfd6f03f1b9c30b1780846cfc71249b8836fc
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
