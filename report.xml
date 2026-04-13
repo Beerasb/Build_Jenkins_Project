@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites tests="2" failures="0" disabled="0" errors="0" time="0.04" timestamp="2026-04-13T09:53:40.013" name="AllTests">
-  <testsuite name="MathTest" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.015" timestamp="2026-04-13T09:53:40.027">
-    <testcase name="Addition" file="tests.cpp" line="9" status="run" result="completed" time="0." timestamp="2026-04-13T09:53:40.030" classname="MathTest" />
-    <testcase name="Multiplication" file="tests.cpp" line="16" status="run" result="completed" time="0." timestamp="2026-04-13T09:53:40.037" classname="MathTest" />
+<testsuites tests="2" failures="0" disabled="0" errors="0" time="0.037" timestamp="2026-04-13T11:09:06.060" name="AllTests">
+  <testsuite name="MathTest" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.017" timestamp="2026-04-13T11:09:06.072">
+    <testcase name="Addition" file="tests.cpp" line="9" status="run" result="completed" time="0." timestamp="2026-04-13T11:09:06.076" classname="MathTest" />
+    <testcase name="Multiplication" file="tests.cpp" line="16" status="run" result="completed" time="0." timestamp="2026-04-13T11:09:06.083" classname="MathTest" />
   </testsuite>
 </testsuites>
