@@ -3,8 +3,8 @@ name: Run Google Tests
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:  # This adds a "Run workflow" button in the GitHub UI
-  
+  workflow_dispatch:
+
 jobs:
   test:
     runs-on: windows-latest
@@ -13,17 +13,20 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
+    - name: Setup MSVC
+      uses: ilammy/msvc-dev-cmd@v1
 
-    - name: Build solution
-      run: msbuild my_project.sln
+    - name: List files
+      run: dir
+      
+    - name: Build using makefile
+      run: nmake /f makefile
 
     - name: Run tests
-      run: |
-        .\run_tests.exe --gtest_output=xml:report.xml
+      run: .\run_tests.exe --gtest_output=xml:report.xml
 
     - name: Upload XML artifact
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: test-report
