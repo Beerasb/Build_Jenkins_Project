@@ -1,0 +1,6 @@
+{
+    "makefile.configureOnOpen": true,
+    "cmake.additionalCompilerSearchDirs": [
+        ""
+    ]
+}
