@@ -6,42 +6,70 @@ extern "C" {
     #include "helper.h"
 }
 
-TEST(MathTest, Addition) {
+TEST(MathTest, Addition1) {
     std::cout << "Running Addition tests..." << std::endl;
-    EXPECT_EQ(add(2, 3), 5);
+    EXPECT_EQ(add(1, 3), 4);
     EXPECT_EQ(add(-1, 1), 0);
     std::cout << "Addition tests passed!" << std::endl;
 }
 
-TEST(MathTest, Multiplication) {
+TEST(MathTest, Multiplication1) {
     std::cout << "Running Multiplication tests..." << std::endl;
     EXPECT_EQ(multiply(4, 5), 20);
     EXPECT_EQ(multiply(0, 10), 0);
     std::cout << "Multiplication tests passed!" << std::endl;
 }
 
-TEST(MathTest, Addition) {
+TEST(MathTest, Addition2) {
     std::cout << "Running Addition tests..." << std::endl;
-    EXPECT_EQ(add(2, 3), 5);
+    EXPECT_EQ(add(2, 5), 7);
     EXPECT_EQ(add(-1, 1), 0);
     std::cout << "Addition tests passed!" << std::endl;
 }
 
-TEST(MathTest, Multiplication) {
+TEST(MathTest, Multiplication2) {
     std::cout << "Running Multiplication tests..." << std::endl;
     EXPECT_EQ(multiply(4, 5), 20);
     EXPECT_EQ(multiply(0, 10), 0);
     std::cout << "Multiplication tests passed!" << std::endl;
 }
 
-TEST(MathTest, Addition) {
+TEST(MathTest, Addition3) {
     std::cout << "Running Addition tests..." << std::endl;
     EXPECT_EQ(add(2, 3), 5);
     EXPECT_EQ(add(-1, 1), 0);
     std::cout << "Addition tests passed!" << std::endl;
 }
 
-TEST(MathTest, Multiplication) {
+TEST(MathTest, Multiplication3) {
+    std::cout << "Running Multiplication tests..." << std::endl;
+    EXPECT_EQ(multiply(4, 5), 20);
+    EXPECT_EQ(multiply(0, 10), 0);
+    std::cout << "Multiplication tests passed!" << std::endl;
+}
+
+TEST(MathTest, Addition4) {
+    std::cout << "Running Addition tests..." << std::endl;
+    EXPECT_EQ(add(2, 5), 7);
+    EXPECT_EQ(add(-1, 1), 0);
+    std::cout << "Addition tests passed!" << std::endl;
+}
+
+TEST(MathTest, Multiplication4) {
+    std::cout << "Running Multiplication tests..." << std::endl;
+    EXPECT_EQ(multiply(4, 5), 20);
+    EXPECT_EQ(multiply(0, 10), 0);
+    std::cout << "Multiplication tests passed!" << std::endl;
+}
+
+TEST(MathTest, Addition5) {
+    std::cout << "Running Addition tests..." << std::endl;
+    EXPECT_EQ(add(2, 5), 7);
+    EXPECT_EQ(add(-1, 1), 0);
+    std::cout << "Addition tests passed!" << std::endl;
+}
+
+TEST(MathTest, Multiplication5) {
     std::cout << "Running Multiplication tests..." << std::endl;
     EXPECT_EQ(multiply(4, 5), 20);
     EXPECT_EQ(multiply(0, 10), 0);
