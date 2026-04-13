@@ -3,7 +3,8 @@ name: Run Google Tests
 on:
   push:
     branches: [ main ]
-
+  workflow_dispatch:  # This adds a "Run workflow" button in the GitHub UI
+  
 jobs:
   test:
     runs-on: windows-latest
