@@ -13,22 +13,23 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    # 1.    # "Set up GCC" step with this:
-    - name: Set up MinGW
-      uses: egor-tensin/setup-mingw@v3
-      with:
-        platform: x64
-        cc: 0  # This goes inside the 'with' section
+    # 1. Install Google Test for MinGW using vcpkg
+    - name: Install Google Test
+      shell: cmd
+      run: |
+        vcpkg install gtest:x64-mingw-dynamic
 
+    # 2. Add vcpkg's installed binaries to the PATH so make can find them
+    - name: Set up Environment
+      shell: cmd
+      run: |
+        echo C:\vcpkg\installed\x64-mingw-dynamic\bin >> %GITHUB_PATH%
 
-
-    # 2. Build the project using your Makefile
-    - name: Build with Make
-      run: make  # This creates your .exe
-
-    # 3. Run the tests
-    - name: Run tests
-      run: make test  # Or directly: .\run_tests.exe --gtest_output=xml:report.xml
+    # 3. Build and Run Tests
+    - name: Build and Test
+      shell: cmd
+      run: |
+        make test
 
     - name: Upload XML report
       if: always()
