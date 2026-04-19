@@ -13,24 +13,26 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    # 1. Install Google Test for MinGW using vcpkg
+    # 1. Install Google Test using the runner's built-in vcpkg
     - name: Install Google Test
       shell: cmd
       run: |
         vcpkg install gtest:x64-mingw-dynamic
 
-    # 2. Add vcpkg's installed binaries to the PATH so make can find them
-    - name: Set up Environment
-      shell: cmd
-      run: |
-        echo C:\vcpkg\installed\x64-mingw-dynamic\bin >> %GITHUB_PATH%
-
-    # 3. Build and Run Tests
+    # 2. Build and Run Tests
     - name: Build and Test
       shell: cmd
       run: |
+        :: Set the path for the Makefile to find the libraries
+        set VCPKG_ROOT=C:/vcpkg
+        
+        :: Add MinGW and vcpkg binaries to the path so the .exe can run
+        set PATH=C:\ProgramData\Chocolatey\bin;C:\vcpkg\installed\x64-mingw-dynamic\bin;%PATH%
+        
+        :: Run the make command
         make test
 
+    # 3. Upload the test results
     - name: Upload XML report
       if: always()
       uses: actions/upload-artifact@v4
