@@ -13,12 +13,12 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    # 1. Setup the compiler (Example using Mingw for 'make')
-    - name: Set up GCC
-      uses: egor-tensin/setup-gcc@v1
+    # 1.    # Replace the old "Set up GCC" step with this:
+    - name: Set up MinGW
+      uses: egor-tensin/setup-mingw@v3
       with:
-        version: latest
         platform: x64
+
 
     # 2. Build the project using your Makefile
     - name: Build with Make
