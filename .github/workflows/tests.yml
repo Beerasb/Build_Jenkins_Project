@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  hobby-project-build:
+  build-and-test:
     runs-on: windows-latest
 
     steps:
@@ -20,11 +20,11 @@ jobs:
     - name: Build and Test
       shell: cmd
       run: |
-        :: Point to the vcpkg installation
+        :: Set environment for the Makefile
         set VCPKG_ROOT=C:/vcpkg
         
-        :: Add binaries to PATH so run_tests.exe can find DLLs at runtime
-        set PATH=C:\ProgramData\Chocolatey\bin;C:\vcpkg\installed\x64-mingw-dynamic\bin;%PATH%
+        :: Add the vcpkg BIN folder to PATH (Important so the .exe can find gtest.dll)
+        set PATH=C:\vcpkg\installed\x64-mingw-dynamic\bin;%PATH%
         
-        :: Run make. Note: We use mingw32-make as it's the standard name on Windows runners.
+        :: Run the build
         mingw32-make test
