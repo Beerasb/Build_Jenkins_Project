@@ -2,7 +2,9 @@ CC = gcc
 CXX = g++
 CFLAGS = -Wall -g
 CXXFLAGS = -Wall -g
-LIBS = -lgtest -lgtest_main -lpthread
+VCPKG_ROOT ?= vcpkg
+GTEST_INCLUDE = -I$(VCPKG_ROOT)/installed/x64-mingw-dynamic/include
+GTEST_LIB = -L$(VCPKG_ROOT)/installed/x64-mingw-dynamic/lib -lgtest -lgtest_main -lpthread
 
 TARGET = my_project
 TEST_TARGET = run_tests
@@ -14,7 +16,7 @@ $(TARGET): main.o helper.o
 
 # Rule to build and link the test executable
 test: helper.o tests.cpp
-	$(CXX) $(CXXFLAGS) tests.cpp helper.o $(LIBS) -o $(TEST_TARGET)
+	$(CXX) $(CXXFLAGS) $(GTEST_INCLUDE) tests.cpp helper.o $(GTEST_LIB) -o $(TEST_TARGET)
 	./$(TEST_TARGET)
 
 %.o: %.c

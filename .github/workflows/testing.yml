@@ -20,27 +20,23 @@ jobs:
         update: true
         install: >-
           mingw-w64-x86_64-gcc
-          mingw-w64-x86_64-cmake
+          mingw-w64-x86_64-g++
           mingw-w64-x86_64-make
 
-    - name: Install Google Test
+    - name: Setup vcpkg and install dependencies
       shell: bash
       run: |
         export PATH="/c/msys64/mingw64/bin:/c/msys64/usr/bin:$PATH"
-        cd /tmp
-        git clone https://github.com/google/googletest.git
-        cd googletest
-        mkdir build && cd build
-        cmake -DCMAKE_INSTALL_PREFIX=/c/msys64/mingw64 ..
-        cmake --build . --config Release
-        cmake --install .
+        cd vcpkg
+        ./bootstrap-vcpkg.sh -disableMetrics
+        ./vcpkg install gtest:x64-mingw-dynamic
 
     - name: Build and run tests
       shell: bash
       run: |
         export PATH="/c/msys64/mingw64/bin:/c/msys64/usr/bin:$PATH"
-        export CPLUS_INCLUDE_PATH="/c/msys64/mingw64/include:$CPLUS_INCLUDE_PATH"
-        export LIBRARY_PATH="/c/msys64/mingw64/lib:$LIBRARY_PATH"
+        export VCPKG_ROOT=${{ github.workspace }}/vcpkg
+        export PKG_CONFIG_PATH="$VCPKG_ROOT/installed/x64-mingw-dynamic/lib/pkgconfig:$PKG_CONFIG_PATH"
         make test
 
     - name: Clean build artifacts
