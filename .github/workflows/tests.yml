@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # This is the ONLY job that should be in this file
   hobby-project-build:
     runs-on: windows-latest
 
@@ -14,27 +13,18 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
-    # 1. Install gtest using the built-in vcpkg (No external "setup" actions used)
     - name: Install Google Test
       shell: cmd
       run: vcpkg install gtest:x64-mingw-dynamic
 
-    # 2. Build and Run everything in one clean step
     - name: Build and Test
       shell: cmd
       run: |
-        :: Tell the Makefile to use the system vcpkg path
+        :: Point to the vcpkg installation
         set VCPKG_ROOT=C:/vcpkg
         
-        :: Add necessary folders to PATH so make and the .exe work
+        :: Add binaries to PATH so run_tests.exe can find DLLs at runtime
         set PATH=C:\ProgramData\Chocolatey\bin;C:\vcpkg\installed\x64-mingw-dynamic\bin;%PATH%
         
-        :: Execute the Makefile
-        make test
-
-    - name: Upload XML report
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-report
-        path: report.xml
+        :: Run make. Note: We use mingw32-make as it's the standard name on Windows runners.
+        mingw32-make test
