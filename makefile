@@ -4,7 +4,9 @@ CFLAGS = -Wall -g
 CXXFLAGS = -Wall -g
 VCPKG_ROOT ?= vcpkg
 GTEST_INCLUDE = -I$(VCPKG_ROOT)/installed/x64-mingw-dynamic/include
-GTEST_LIB = -L$(VCPKG_ROOT)/installed/x64-mingw-dynamic/lib -lgtest -lgtest_main -lpthread
+# Change this line in your Makefile:
+GTEST_LIB = -LC:/vcpkg/installed/x64-mingw-dynamic/lib -l:gtest.lib -l:gtest_main.lib -lpthread
+#GTEST_LIB = -L$(VCPKG_ROOT)/installed/x64-mingw-dynamic/lib -lgtest -lgtest_main -lpthread
 
 TARGET = my_project
 TEST_TARGET = run_tests
