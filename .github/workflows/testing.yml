@@ -26,16 +26,19 @@ jobs:
       shell: bash
       run: |
         export PATH="/c/msys64/mingw64/bin:/c/msys64/usr/bin:$PATH"
-        cd vcpkg
-        bash bootstrap-vcpkg.sh -disableMetrics
-        ./vcpkg install gtest:x64-mingw-dynamic
+        # Download and setup vcpkg in a temporary location
+        mkdir -p /tmp/vcpkg-build
+        cd /tmp/vcpkg-build
+        git clone https://github.com/Microsoft/vcpkg.git .
+        ./bootstrap-vcpkg.sh -disableMetrics
+        ./vcpkg install gtest:x64-mingw-dynamic --triplet x64-mingw-dynamic
+        echo "VCPKG_INSTALLED=/tmp/vcpkg-build/installed" >> $GITHUB_ENV
 
     - name: Build and run tests
       shell: bash
       run: |
         export PATH="/c/msys64/mingw64/bin:/c/msys64/usr/bin:$PATH"
-        export VCPKG_ROOT=${{ github.workspace }}/vcpkg
-        export PKG_CONFIG_PATH="$VCPKG_ROOT/installed/x64-mingw-dynamic/lib/pkgconfig:$PKG_CONFIG_PATH"
+        export VCPKG_ROOT=/tmp/vcpkg-build
         make test
 
     - name: Clean build artifacts
