@@ -24,10 +24,14 @@ jobs:
           mingw-w64-x86_64-make
 
     - name: Build and run tests
-      shell: msys2 {0}
-      run: make test
+      shell: bash
+      run: |
+        export PATH="/c/msys64/mingw64/bin:/c/msys64/usr/bin:$PATH"
+        make test
 
     - name: Clean build artifacts
-      shell: msys2 {0}
+      shell: bash
       if: always()
-      run: make clean
+      run: |
+        export PATH="/c/msys64/mingw64/bin:/c/msys64/usr/bin:$PATH"
+        make clean
